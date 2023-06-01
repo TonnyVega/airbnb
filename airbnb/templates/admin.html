@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+<body>
+
+  {% block content%}
+
+  <div class="admin-wrapper">
+    <div class="admin-title">
+      <p>
+        Control Pannel
+      </p>
+
+      <div class="pannel">
+        <nav>
+          <a href="#">Apartments</a>
+          <a href="#users" >Users</a>
+          <a href="#addapartment">Add Apartment</a>
+          <a href="#">Comments</a>
+          <a href="#">Edit</a>
+      </nav>  
+      </div>
+
+    </div>
+
+    <div class="tables">
+
+    <div id="users">
+    <table>
+      <thead>
+        <caption>User List</caption>
+        <tr>
+          <th>Id</th>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Remove User</th>
+      </thead>
+      <tbody>
+          {% for i in users %}
+        <tr>
+          <td>{{i.id}}</td>
+          <td>{{i.username}}</td>
+          <td>{{i.email}}</td>
+          <td> <button class="tb">Remove</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
+
+    <div id="apartments">
+        <table>
+          <thead>
+            <caption>Apartment List</caption>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>Edit</th>
+              <th>Delete</th>
+          </thead>
+          <tbody>
+              {% for i in apartments %}
+            <tr>
+              <td>{{i.id}}</td>
+              <td>{{i.title}}</td>
+              <td>{{i.description}}</td>
+              <td>{{i.location}}</td>
+              <td>{{i.price}}</td>
+              <td>
+                <a class="tb" href="{{ url_for('edit_apartment', apartment_id=i.id) }}">Edit</a>
+                <form action="{{ url_for('delete_apartment', apartment_id=i.id) }}" method="POST">
+                  <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                </form>
+              </td>              
+              <td>
+                <form action="{{ url_for('delete_apartment', apartment_id=i.id) }}" method="POST">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                    <button class="tb" type="submit">Delete</button>
+                  </form>
+              </td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        </div>
+    </div>
+
+
+    <button id="addapartment" class="open-modal btn outline">Add Apartment</button>
+    
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="outline close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form class="apartment-upload" method="POST" action="" enctype="multipart/form-data">
+              {{ form.hidden_tag() }}
+              <fieldset class="form-items">
+                <legend class="form-legend">Apartment Details</legend>
+                <div class="form-group">
+                  {{ form.title.label(class="form-control-label") }}
+                  {% if form.title.errors %}
+                  {{ form.title(class="form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.title(class="form-control") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.description.label(class="form-control-label") }}
+                  {% if form.description.errors %}
+                  {{ form.description(class="form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.description.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.description(class="form-control") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.location.label(class="form-control-label") }}
+                  {% if form.location.errors %}
+                  {{ form.location(class="form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.location.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.location(class="form-control") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.price.label(class="form-control-label") }}
+                  {% if form.price.errors %}
+                  {{ form.price(class="form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.price.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.price(class="form-control") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.category.label(class="form-control-label") }}
+                  {% if form.category.errors %}
+                  {{ form.category(class="form-control is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.category.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.category(class="form-control") }}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.picture_1.label() }}
+                  {{ form.picture_1(class="btn") }}
+                  {% if form.picture_1.errors %}
+                  {% for error in form.picture_1.errors %}
+                  <span class="text-danger">{{ error }}</span><br>
+                  {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.picture_2.label() }}
+                  {{ form.picture_2(class="btn") }}
+                  {% if form.picture_2.errors %}
+                  {% for error in form.picture_2.errors %}
+                  <span class="text-danger">{{ error }}</span><br>
+                  {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.picture_3.label() }}
+                  {{ form.picture_3(class="btn") }}
+                  {% if form.picture_3.errors %}
+                  {% for error in form.picture_3.errors %}
+                  <span class="text-danger">{{ error }}</span><br>
+                  {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.submit(class="btn white-blue") }}
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+
+  {% endblock content %}
+  
+</body>
+
+
+
+  <!-- <p>
+    a table with all users, and the abilty to remove a user. <br>
+    ability to remove a house. <br>
+
+    Number of bookings,since the site is made.
+    meaning the book function should also add a number to the table.
+
+    Later on, handle all the reports and talk wuth people.
+  </p> -->

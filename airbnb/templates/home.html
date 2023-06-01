@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+<body>
+
+  {% block content%}
+
+  <div class="intro">
+    <img src="{{url_for('static', filename='images/background.png')}}"  alt="">
+  </div>
+  <div id="about">
+    
+    <div class="card">
+      <div class="top"></div>
+      <div class="article">
+        <div class="avatar">
+          <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="">
+        </div>
+        <p class="bnb-description">Ndirangu's BNB is a charming and cozy bed and breakfast nestled in the heart of a serene countryside. Surrounded by breathtaking landscapes and picturesque views, it offers a tranquil escape from the hustle and bustle of city life. With its warm hospitality and personalized service, Ndirangu's BNB ensures an unforgettable stay for every guest. The beautifully appointed rooms are designed with utmost comfort and style in mind, providing a peaceful retreat after a day of exploring the nearby attractions. Wake up to the aroma of freshly brewed coffee and indulge in a delicious homemade breakfast, carefully prepared with local ingredients. Whether you're seeking a peaceful getaway, a romantic retreat, or a base to explore the natural wonders of the area, Ndirangu's BNB is the perfect choice.</p>
+      </div>
+    </div>
+    
+
+  </div>
+
+  <div class="navigation">
+    <a href="#studio"><button class="outline white-blue">Studio</button></a>
+    <a href="#one_bedroom"><button class="outline white-blue">One Bedrooms</button></a>
+    <a href="#two_bedroom"><button class="outline white-blue">Two Bedrooms</button></a>
+    <a href="#three_bedroom"><button class="outline white-blue">Three Bedrooms</button></a>
+    <a href="#mansionette"><button class="outline white-blue">Mansionette</button></a>
+  </div>
+
+<div class="apartments">
+
+  {% for i in apartments %}
+  <div id="{{ i.category }}" class="apartment-details">
+    <div class="picture">
+      <img src="{{ url_for('static', filename='apartments_pics/' + i.picture_1) }}" alt="">
+    </div>
+    <div class="apartment-description">
+      <div class="title">
+        <span><i class="fa fa-home" aria-hidden="true"></i>
+          {{i.title}}.</span>
+        <p>Price: Ksh {{i.price}}</p>
+      </div>
+
+      <div class="location">
+        <div class="availability">
+         <span><i class="fa fa-circle-notch" aria-hidden="true"></i>Available Now</span>
+         <span> <i class="fa fa-map-marker" aria-hidden="true"></i> {{i.location}}</span>
+        </div>
+        <div class="house">
+          <div class="house-title">
+            <h2>Modern Apartment</h2>
+          <h3>{{i.description}}</h3>
+          <div class="ranking">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+          </div>
+          
+          <p>State of the art security <br>
+            Wooden Heated floors <br>
+            Flowing water <br>
+            Hot Instant Showers <br>
+            Free Parking &amp; Wifi</p>
+        </div>
+        
+        <div>
+        <button class="btn book"><span>Book</span></button>
+        <button class="btn wish"><span>Wishlist</span></button>          
+        </div>
+        
+
+      </div>
+    </div>
+    
+  </div>
+{% endfor %}
+
+</div>
+
+
+<div class="comments">
+  <h3>Comments</h3>
+
+  <!-- Comment Section -->
+  
+    {% for post in posts %}
+    <div class="comment">
+      <div class="user-avatar">
+        <img src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="User Avatar">
+        <p>{{ post.author.username }}</p>
+      </div>
+      <div class="post">
+        <div class="comment-title">
+          <h4>{{ post.title }}</h4>
+          <h5>{{ post.date_posted.strftime('%Y-%m-%d %H:%M') }}</h5>
+        </div>
+
+        <div class="comment-content">
+          <p>{{ post.content }}</p>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+          <a class="btn" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+    <!-- End of Comment Section -->
+
+  <!-- Comment Input -->
+  <form method="POST" action="{{ url_for('home') }}">
+    {{ form.csrf_token }}
+    <div class="comments__form-info">
+      <div class="comments__form-field">
+        {{ form.title.label(class="comments__form-label") }}
+        {% if form.title.errors %}
+        {{ form.title(class="comments__form-input is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.title.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.title(class="comments__form-input") }}
+        {% endif %}
+      </div>
+    </div>
+  
+    <div class="comments__form-text">
+      <div class="comments__form-field">
+        {{ form.content.label(class="comments__form-label") }}
+        {% if form.content.errors %}
+        {{ form.content(class="comments__form-input comments__form-textarea is-invalid") }}
+        <div class="invalid-feedback">
+          {% for error in form.content.errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        {{ form.content(class="comments__form-input comments__form-textarea") }}
+        {% endif %}
+      </div>
+    </div>
+  
+    {{ form.submit(class="comments__form-submit") }}
+  </form>
+  </div>
+</div>
+
+
+  {% endblock%}
+  
+</body>

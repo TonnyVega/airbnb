@@ -1,0 +1,81 @@
+.apartments{
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: scroll;
+  vertical-align: top;
+}
+.apartments::-webkit-scrollbar{
+  display: none;
+}
+
+.apartment-details{
+  height: 350px;
+  margin: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 252, 252, 0.5);
+  box-shadow: #0000000a 0px 3px 5px;
+}
+.apartment-description{
+  margin: 0px 30px 10px 0px;
+  width: 100%;
+}
+.title{
+  width: 600px;
+  padding: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title span{
+  border-radius: 15px;
+  padding: 5px;
+  background-color: #d3f8f8;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+.title p{
+  max-width: 800px;
+  padding: 8px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #3b3a34;
+}
+
+.picture{
+  margin: 0px 10px 0px 0px;
+  height: 450px;
+}
+.picture img{
+  object-fit: cover;
+  width: 450px;
+  height: 350px;
+  border-radius: 14px 0px 0px 10px;
+}
+.location{
+  display: flex;
+  flex-direction: column;
+}
+.availability{
+  display: flex;
+  color: grey;
+}
+.availability span{
+  padding-left: 10px;
+}
+.availability i{
+  padding: 0px 2px 0px 0px;
+}
+
+.house{
+  display: flex;
+  padding: 10px;
+}
+.house-title{
+  margin: 0px 50px 10px 10px;
+  padding-right: 10px;
+  border-right: 1px solid #a9a7a7;
+}

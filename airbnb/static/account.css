@@ -1,0 +1,100 @@
+:root {
+	--color-white: #f3f3f3;
+	--color-darkblue: #1b1b32;
+	--color-darkblue-alpha: #1b1b32cc;
+	--color-purple: #2e81c0;
+}
+
+.content-section{
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+  margin: 76px 0px 0px 0px;
+  display: flex;
+  padding: 10px;
+}
+
+.media{
+  margin: 0px 20px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+  width: 300px;
+
+
+}
+.media img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-edit{
+  width: 60%;
+	margin: 30px auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 2px 2px 3px black;
+	padding-top: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	background-color: var(--color-purple);
+  opacity: 80%;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+}
+
+.form-legend{
+  padding: 15px;
+	font-size: 20px;
+	color: black;
+	text-transform: capitalize;
+}
+
+.form-control-label{
+  padding: 15px;
+	font-size: 20px;
+	color: black;
+	text-transform: capitalize;
+}
+
+.form-control{
+  padding: 15px;
+	border: none;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+
+}
+.form-group{
+  padding:10px;
+  display: flex;
+	flex-direction: column;
+	width: 80%;
+}
+
+.wishlist{
+  padding: 20px;
+  margin: 20px 0px 0px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+
+.wish-header{
+  width: 100%;
+  
+}

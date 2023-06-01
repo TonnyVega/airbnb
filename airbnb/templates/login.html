@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+<body>
+
+  {% block content%}
+
+  <div class="body">
+
+
+<div class="login-signup-cards">
+<div class="login-card">
+
+  <div class="login-card-items">
+
+    <h1 class="login-tag">Log In</h1>
+
+     <form class="form-items" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="email-item">
+                          {{ form.email.label(class="placeholder") }}
+                          {% if form.email.errors %}
+                              {{ form.email(class="form-items") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.email.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.email(class="form-items") }}
+                          {% endif %}
+                      </div>
+
+            <div class="password-item">
+
+                      <div class="email-item">
+                          {{ form.password.label(class="placeholder") }}
+                          {% if form.password.errors %}
+                              {{ form.password(class="form-items") }}
+                              <div class="invalid-feedback">
+                                  {% for error in form.password.errors %}
+                                      <span>{{ error }}</span>
+                                  {% endfor %}
+                              </div>
+                          {% else %}
+                              {{ form.password(class="form-items") }}
+                          {% endif %}
+                        </div>
+                      <div class="form-check">
+                        {{ form.remember(class="form-check-input") }}
+                        {{ form.remember.label(class="form-check-label") }}
+                    </div>
+
+              <div class="forgot-password-item">
+
+                <a href="{{url_for('reset_request')}}">Forgot password?</a>
+
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+
+            <div class="form-group">
+
+              <a href="{{ url_for('signup') }}"><button class="outline white-purple">Sign Up Here</button></a>
+
+            </div>
+
+    </form>
+
+  </div>
+  </div>
+
+</div>
+</div>
+{% endblock content %}
+  
+</body>

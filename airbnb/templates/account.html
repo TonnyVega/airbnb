@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+<body>
+
+ 
+  
+    {% block content%}
+
+    <div class="content-section">
+      <div class="media">
+        <img src="{{ image_file }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{current_user.username}}</h2>
+          <p class="text-secondary">{{current_user.email}}</p>
+        </div>
+      </div>
+
+      
+        <form class="profile-edit" method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="form-legend">Account Info</legend>
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                  {{ form.picture.label() }}
+                  {{ form.picture(class="btn") }}
+                  {% if form.picture.errors %}
+                      {% for error in form.picture.errors %}
+                          <span class="text-danger">{{ error }}</span></br>
+                      {% endfor %}
+                  {% endif %}
+              </div>
+          </fieldset>
+               
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn outline") }}
+            </div>
+        </div>
+        </form>
+
+        <div class="wishlist">
+          
+          <div class="wish-hader">
+            <h3>Your Wishlist</h3>
+          </div>
+          <div id="studio" class="apartment-details">
+            <div class="picture">
+              <img src="https://images.unsplash.com/photo-1595599512948-b9831e5fc11c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="">
+            </div>
+            <div class="apartment-description">
+              <div class="title">
+                <span><i class="fa fa-home" aria-hidden="true"></i>
+                  Urithi Apartments: Juja.</span>
+                <p>Price: Ksh 1500</p>
+              </div>
+        
+              <div class="location">
+                <div class="availability">
+                 <span><i class="fa fa-circle-notch" aria-hidden="true"></i>Available Now</span>
+                 <span> <i class="fa fa-map-marker" aria-hidden="true"></i> Juja, Nairobi</span>
+                </div>
+                <div class="house">
+                  <div class="house-title">
+                    <h2>Modern Studio Apartment</h2>
+                  <h3>Located at Juja Farm Road, <br> Opposite Waka Petrol Station</h3>
+                  <div class="ranking">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  </div>
+                  
+                  <p>State of the art security <br>
+                    Wooden Heated floors <br>
+                    Flowing water <br>
+                    Hot Instant Showers <br>
+                    Free Parking &amp; Wifi</p>
+                </div>
+                
+                <div>
+                <button class="outline green-white"><span>Book</span></button>
+                          
+                </div>
+                
+        
+              </div>
+            </div>
+            
+          </div>
+        </div>
+    
+           
+            {% endblock content %}
+
+     
+</body>

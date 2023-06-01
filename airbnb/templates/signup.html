@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+<body>
+
+  {% block content%}
+  <div class="body">
+  <div class="login-signup-cards">
+
+  <div class="signup-card">
+
+    <div class="signup-card-items">
+
+      <h1 class="signup-tag">Sign Up</h1>
+
+      <form method="POST" class="form-items">
+        {{ form.hidden_tag() }}
+
+        <div class="email-item" type="text">
+          {{ form.username.label(class="placeholder") }}
+
+          {% if form.username.errors %}
+              {{ form.username(class="form-items") }}
+              <div class="invalid-feedback">
+                  {% for error in form.username.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+          {% else %}
+              {{ form.username(class="form-items") }}
+          {% endif %}
+              </div>
+              <div class="email-item" >
+                {{ form.email.label(class="placeholder") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-items") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-items") }}
+                {% endif %}
+              </div>
+
+              <div class="password-item">
+                {{ form.password.label(class="form-control-label") }}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-items form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-items form-control-lg") }}
+                {% endif %}
+            </div>
+            
+            <div class="password-item">
+                {{ form.confirm_password.label(class="placeholder") }}
+                {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="form-items form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.confirm_password(class="form-items form-control-lg") }}
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+                    
+
+            <div class="form-group">
+
+              <a href="{{ url_for('login') }}"><button class="btn white-purple"> Have already an account? <span>Log In</span></button> </a>
+
+            </div>
+
+          </form>
+
+        </div>
+
+  </div>
+</div>
+</div>
+  {% endblock content %}
+  
+</body>
