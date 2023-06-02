@@ -37,7 +37,7 @@
         <a href="{{url_for('home')}}">HOME</a>
         <a href="#about">ABOUT US</a>
         {% if current_user.is_authenticated %}
-          {% if current_user.email == '' %}
+          {% if current_user.email == 'admin@email.com' %}
             <a href="{{url_for('admin')}}">ADMIN</a>
           {% endif %}
           <a href="{{url_for('account')}}">MY ACCOUNT</a>
@@ -86,6 +86,8 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  <script src="{{url_for('static', filename='js/carousel.js')}}"></script>
+
 
 
 </body>

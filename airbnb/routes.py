@@ -248,3 +248,12 @@ def account():
     form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
+
+# view apartment.
+
+@app.route('/apartment/<int:apartment_id>')
+def apartment(apartment_id):
+  apartment= AdminPost.query.get_or_404(apartment_id)
+  print(apartment,"this is the apartment object")
+  return render_template('apartment.html', title=apartment.title, apartment=apartment)

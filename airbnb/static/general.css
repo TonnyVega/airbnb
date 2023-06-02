@@ -52,4 +52,95 @@
     justify-content: flex-end;
   }
 
+
+  .house_info{
+    display: flex;
+    margin: 120px 10px 10px 10px;
+    justify-content: center;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  }
+
+  .apartment-carousel{
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+  }
+  .house_description{
+    background: #45fff4;
+    width: 300px;
+    height: 500px;
+    border: 1px solid blue;
+  }
+
+  .reserve{
+    padding: 0px 10px 10px 0px;
+  }
+
+  
+  .slider {
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden; 
+    border-radius: 5px;
+  }
+  
+  .slider h3{
+    display: flex;
+    text-transform: capitalize;
+    font-weight: 900;
+    justify-content: center;
+  }
+  
+  .slide {
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    position: absolute;
+    transition: all 0.5s;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* .slide p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  } */
+  
+  .next, .prev {
+    position: absolute;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    z-index: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 18px;
+  }
+  .next:active, .prev:active {
+    transform: scale(1.1);
+  }
+  .next-prev,.prev-prev {
+    top: 45%;
+    left: 2%;
+  }
+  
+  .next-next, .prev-prev {
+    top: 45%;
+    right: 2%;
+  }
   
