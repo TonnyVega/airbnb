@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+<body>
+
+  {% block content%}
+
+  <div class="house_info">
+    <div class="apartment-carousel">
+
+        <div class="slider">
+          <h3>house name</h3>
+          <!-- slide 1 -->
+          
+          <div class="slide">
+            <img src="{{ url_for('static', filename='apartments_pics/' + apartment.picture_1) }}" alt="" />
+          </div>
+          <div class="slide">
+            <img src="{{ url_for('static', filename='apartments_pics/' + apartment.picture_2) }}" alt="" />
+          </div>
+          <div class="slide">
+            <img src="{{ url_for('static', filename='apartments_pics/' + apartment.picture_3) }}" alt="" />
+          </div>
+                
+          <!-- Control buttons -->
+          <button class="next next-next"> >> </button>
+          <button class="prev prev-prev">
+            << </button>
+        </div>
+      <div class="reserve">
+        <button class="outline white-blue">Book</button>
+        <button class="outline white-red">Wishlist</button>
+
+      </div>
+
+    </div>
+    <div class="house_description">
+
+    </div>
+</div>
+
+  {% endblock content %}
+  
+</body>
