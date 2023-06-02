@@ -140,8 +140,26 @@
   }
   
   .house_description{
-    background: #45fff4;
+    padding: 0px 10px 10px 10px;
     width: 350px;
     height: 500px;
-    border: 1px solid blue;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .house_description h3{
+    padding-bottom: 8px;
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+  }
+  .house_description p{
+    text-align: center;
+    max-width: 800px;
+    padding: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #3b3a34;
   }
